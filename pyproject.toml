@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "trailcam"
+version = "0.1.0"
+description = "Wildlife species classification from camera-trap imagery"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Tyler Mestery" }]
+dependencies = [
+    "numpy",
+    "pandas",
+    "scikit-learn",
+    "torch",
+    "torchvision",
+    "Pillow",
+    "datasets",
+    "pyyaml",
+    "tqdm",
+]
+
+[project.optional-dependencies]
+dev = ["jupyter", "ipykernel"]
+
+[tool.setuptools.packages.find]
+where = ["src"]

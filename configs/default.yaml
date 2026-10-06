@@ -1,0 +1,16 @@
+# Default TrailCam experiment settings
+
+seed: 42
+
+paths:
+  raw: data/raw
+  interim: data/interim
+  processed: data/processed
+  results: results
+
+split:
+  train: 0.70
+  val: 0.15
+  test: 0.15
+  # Split at original-image level to avoid near-duplicate crops across splits
+  level: image
