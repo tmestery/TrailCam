@@ -2,6 +2,9 @@
 
 seed: 42
 
+dataset:
+  hf_id: davanstrien/ena24-detection
+
 paths:
   raw: data/raw
   interim: data/interim

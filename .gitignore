@@ -24,13 +24,13 @@ venv/
 ENV/
 env/
 
-# Data artifacts (keep directory structure via .gitkeep)
+# Data artifacts (keep directory structure via README.md)
 data/raw/*
-!data/raw/.gitkeep
+!data/raw/README.md
 data/interim/*
-!data/interim/.gitkeep
+!data/interim/README.md
 data/processed/*
-!data/processed/.gitkeep
+!data/processed/README.md
 
 # Results (keep directory via .gitkeep)
 results/*
