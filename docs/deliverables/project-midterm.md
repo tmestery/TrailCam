@@ -28,23 +28,23 @@ More directly related to this project, Tabak et al. applied machine learning to 
 
 ### 3.1 Dataset and Data Pre-processing
 
- *To be completed.*
+This project uses the ENA24 (Eastern North America Camera Trap Detection Dataset) from LILA BC, which contains 8,789 camera-trap images (1920×1080) with 9,772 COCO-format bounding-box annotations across 23 wildlife species. The dataset is loaded via the Hugging Face `datasets` library. For species classification, each bounding box is cropped from its source image to form a labeled animal image, where the label is the annotated species. The data are split into training (70%), validation (15%), and test (15%) sets at the original-image level so that all crops from the same photo remain in the same split, reducing leakage from near-duplicate views of the same scene. A fixed random seed (42) is used so the partitions are reproducible; all models are trained and evaluated on these same crop-level splits.
 
 ### 3.2 Feature Extraction
 
- *To be completed.*
+The perceptron, logistic regression, and SVM operate on fixed-length feature vectors rather than raw pixels. For each animal crop, an HSV color histogram captures species coloration with some robustness to day/night brightness changes, and Local Binary Pattern (LBP) texture features capture coat and body patterning under blur and occlusion. These descriptors are concatenated into one feature vector per crop, extracted once from the Section 3.1 images, and reused across classical models. The CNN and zero-shot vision-language model skip this pipeline and use crop pixels directly (resized and normalized for the CNN).
 
 ### 3.3 Classification Models
 
- *To be completed.*
+Five approaches are compared on the same labels and splits. The perceptron is a linear baseline that learns a separating hyperplane in feature space. Logistic regression is a linear, probabilistic classifier with L2 regularization for a stronger classical baseline. An RBF-kernel SVM adds nonlinear decision boundaries when species are not linearly separable in the engineered features. A CNN is trained end-to-end on crop pixels to learn spatial filters suited to animal appearance. A pretrained CLIP-style vision-language model is used zero-shot by matching each crop to the 23 species names as text prompts, with no ENA24 fine-tuning. This mix spans lightweight offline models and a larger pretrained baseline for deployment-oriented comparison.
 
 ### 3.4 Hyperparameters and Training
 
- *To be completed.*
+Classical models use scikit-learn on the training split. Logistic regression uses L2 regularization with the penalty strength `C` selected on the validation set. The SVM uses an RBF kernel with `C` and `gamma` chosen by validation search. The CNN resizes crops to 224×224, trains with Adam (learning rate 1e-3) and mini-batches of size 32, and stops early when validation macro-F1 stops improving. CLIP is not trained on ENA24; each test crop is scored once against a fixed set of species text prompts.
 
 ### 3.5 Evaluation
 
- *To be completed.*
+All models are evaluated on the held-out test split only. Predictions are compared to ground-truth species labels using accuracy and macro-averaged F1 score; macro-F1 treats each species equally and is reported because class frequencies in camera-trap data are imbalanced. The same test crops and metrics are used for every model so results reflect comparable classification performance rather than differences in data partitioning.
 
 ## 4 Preliminary Results
 
@@ -64,7 +64,7 @@ The preliminary results show **briefly describe which model performed best**. Th
 
 ## 5 Future Plan
 
-*To be completed.*
+Through the rest of the project, I will finish the ENA24 data pipeline, extract HSV and LBP features, and train all five models (perceptron, logistic regression, SVM, CNN, and zero-shot CLIP) on the same splits. I will tune classical and CNN hyperparameters on the validation set, then report final test accuracy and macro-F1 for every model. The remaining work focuses on analyzing where lightweight offline models succeed or fail relative to CLIP, especially on rare or visually similar species, and writing up a clear recommendation for field deployment. The final deliverable is a complete comparative evaluation and a trained species classifier suitable for offline use.
 
 ## 6 References
 
