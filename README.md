@@ -14,18 +14,27 @@ source .venv/bin/activate
 pip install -e .
 ```
 
-Optional notebook deps: `pip install -e ".[dev]"`
-
 ## Layout
 
 ```text
-configs/          Experiment defaults (splits, paths, seed)
-data/             Raw / interim crops / processed splits (gitignored)
-docs/             Deliverables (proposal, etc.)
-notebooks/        Exploration notebooks
-results/          Metrics and figures (gitignored)
-scripts/          CLI entrypoints (prepare_data, train, evaluate)
-src/trailcam/     Package: data, features, models, eval, utils
+TrailCam/
+├── configs/                 # Experiment defaults (splits, paths, seed)
+├── data/
+│   ├── raw/                 # ENA24 download (gitignored)
+│   ├── interim/             # Cropped animals (gitignored)
+│   └── processed/           # Train/val/test splits (gitignored)
+├── docs/
+│   ├── deliverables/        # Proposal and course writeups
+│   └── related-work/        # Literature notes
+├── notebooks/               # Exploration
+├── results/                 # Metrics and figures (gitignored)
+├── scripts/                 # CLI entrypoints
+└── src/trailcam/
+    ├── data/                # Download, crop, split
+    ├── features/            # Classical color/texture features
+    ├── models/              # Perceptron, LR, SVM, CNN, LLM
+    ├── eval/                # Accuracy, macro-F1
+    └── utils/               # Path helpers
 ```
 
 ## License
