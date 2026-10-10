@@ -17,3 +17,12 @@ split:
   test: 0.15
   # Split at original-image level to avoid near-duplicate crops across splits
   level: image
+
+classical:
+  feature_cache: data/processed/classical_features.npz
+  hsv_bins: [16, 8, 8]
+  lbp_p: 8
+  lbp_r: 1
+  logistic_c: [0.1, 1.0, 10.0]
+  svm_c: [0.1, 1.0, 10.0]
+  svm_gamma: ["scale", 0.01]
