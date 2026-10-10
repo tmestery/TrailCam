@@ -62,7 +62,7 @@ Initial experiments were conducted to establish baseline performance for the wil
 | Zero-Shot VLM       | --       | --       |
 
 
-The preliminary results show **briefly describe which model performed best**. The **best-performing model** achieved an accuracy of **XX%** and a macro-F1 score of **XX**. The comparison between the classical models provides a baseline for evaluating whether the CNN and zero-shot vision-language model provide meaningful improvements in classification performance. These results are preliminary, and additional experimentation will focus on hyperparameter tuning, CNN training, and comparison with the zero-shot model.
+The preliminary results show that the SVM performed best among the classical models. The best-performing model achieved an accuracy of 67.8% and a macro-F1 score of 0.627. The comparison between the classical models provides a baseline for evaluating whether the CNN and zero-shot vision-language model provide meaningful improvements in classification performance. These results are preliminary, and additional experimentation will focus on hyperparameter tuning, CNN training, and comparison with the zero-shot model.
 
 ## 5 Future Plan
 
