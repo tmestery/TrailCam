@@ -26,6 +26,8 @@ More directly related to this project, Tabak et al. applied machine learning to 
 
 ## 3 Methods
 
+
+
 ### 3.1 Dataset and Data Pre-processing
 
 This project uses the ENA24 (Eastern North America Camera Trap Detection Dataset) from LILA BC, which contains 8,789 camera-trap images (1920×1080) with 9,772 COCO-format bounding-box annotations across 23 wildlife species. The dataset is loaded via the Hugging Face `datasets` library. For species classification, each bounding box is cropped from its source image to form a labeled animal image, where the label is the annotated species. The data are split into training (70%), validation (15%), and test (15%) sets at the original-image level so that all crops from the same photo remain in the same split, reducing leakage from near-duplicate views of the same scene. A fixed random seed (42) is used so the partitions are reproducible; all models are trained and evaluated on these same crop-level splits.
@@ -53,9 +55,9 @@ Initial experiments were conducted to establish baseline performance for the wil
 
 | Model               | Accuracy | Macro-F1 |
 | ------------------- | -------- | -------- |
-| Perceptron          | --       | --       |
-| Logistic Regression | --       | --       |
-| SVM                 | --       | --       |
+| Perceptron          | 59.7%    | 0.540    |
+| Logistic Regression | 66.1%    | 0.617    |
+| SVM                 | 67.8%    | 0.627    |
 | CNN                 | --       | --       |
 | Zero-Shot VLM       | --       | --       |
 
@@ -67,6 +69,8 @@ The preliminary results show **briefly describe which model performed best**. Th
 Through the rest of the project, I will finish the ENA24 data pipeline, extract HSV and LBP features, and train all five models (perceptron, logistic regression, SVM, CNN, and zero-shot CLIP) on the same splits. I will tune classical and CNN hyperparameters on the validation set, then report final test accuracy and macro-F1 for every model. The remaining work focuses on analyzing where lightweight offline models succeed or fail relative to CLIP, especially on rare or visually similar species, and writing up a clear recommendation for field deployment. The final deliverable is a complete comparative evaluation and a trained species classifier suitable for offline use.
 
 ## 6 References
+
+
 
 ### 1 The Perceptron: A Probabilistic Model for Information Storage and Organization in the Brain
 
