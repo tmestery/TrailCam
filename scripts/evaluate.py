@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Print classical model metrics from results/classical_metrics.json."""
+"""Print model metrics from results JSON (prefers all_metrics.json)."""
 
 from __future__ import annotations
 
@@ -8,7 +8,6 @@ import json
 import sys
 from pathlib import Path
 
-# Allow `python scripts/evaluate.py` without relying on an editable install.
 _ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(_ROOT / "src"))
 
@@ -23,7 +22,7 @@ def load_config(config_path: Path) -> dict:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Evaluate / display classical metrics.")
+    parser = argparse.ArgumentParser(description="Display TrailCam metrics.")
     parser.add_argument(
         "--config",
         type=Path,
@@ -33,18 +32,25 @@ def main() -> None:
         "--metrics",
         type=Path,
         default=None,
-        help="Path to classical_metrics.json (default: results/classical_metrics.json)",
+        help="Metrics JSON path (default: results/all_metrics.json if present)",
     )
     args = parser.parse_args()
 
     cfg = load_config(args.config)
     root = repo_root()
     results_dir = root / cfg["paths"]["results"]
-    metrics_path = args.metrics or (results_dir / "classical_metrics.json")
+
+    if args.metrics is not None:
+        metrics_path = args.metrics
+    else:
+        preferred = results_dir / "all_metrics.json"
+        fallback = results_dir / "classical_metrics.json"
+        metrics_path = preferred if preferred.exists() else fallback
 
     if not metrics_path.exists():
         raise SystemExit(
-            f"Missing {metrics_path}. Run: python scripts/train.py"
+            f"Missing {metrics_path}. Run training scripts, then "
+            "python scripts/merge_metrics.py"
         )
 
     report = json.loads(metrics_path.read_text(encoding="utf-8"))

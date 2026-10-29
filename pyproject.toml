@@ -17,10 +17,12 @@ dependencies = [
     "scikit-image",
     "torch",
     "torchvision",
+    "open-clip-torch",
     "Pillow",
     "datasets",
     "pyyaml",
     "tqdm",
+    "joblib",
 ]
 
 [project.optional-dependencies]

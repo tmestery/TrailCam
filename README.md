@@ -14,6 +14,17 @@ source .venv/bin/activate
 pip install -e .
 ```
 
+## Experiments
+
+```bash
+python scripts/prepare_data.py       # download, crop, split
+python scripts/train.py              # classical HSV+LBP baselines
+python scripts/train_cnn.py          # ResNet-18 CNN
+python scripts/eval_zero_shot.py     # zero-shot CLIP
+python scripts/merge_metrics.py      # combine into results/all_metrics.json
+python scripts/evaluate.py           # print metrics table
+```
+
 ## Layout
 
 ```text
