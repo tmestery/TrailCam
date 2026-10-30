@@ -23,6 +23,7 @@ dependencies = [
     "pyyaml",
     "tqdm",
     "joblib",
+    "opencv-python",
 ]
 
 [project.optional-dependencies]

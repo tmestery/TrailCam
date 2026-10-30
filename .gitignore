@@ -36,6 +36,11 @@ data/processed/*
 results/*
 !results/.gitkeep
 
+# Demo sample videos and recorded outputs (keep folder via .gitkeep)
+demo/samples/*
+!demo/samples/.gitkeep
+demo/output/
+
 # Notebooks
 .ipynb_checkpoints/
 
