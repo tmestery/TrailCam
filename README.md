@@ -25,6 +25,15 @@ python scripts/merge_metrics.py      # combine into results/all_metrics.json
 python scripts/evaluate.py           # print metrics table
 ```
 
+## Demo
+
+Full ENA24 camera-trap scenes with the CNN classifying only the animal box. See [`demo/README.md`](demo/README.md).
+
+```bash
+python demo/live_demo.py
+# press q to quit; default is --source scenes
+```
+
 ## Layout
 
 ```text
@@ -34,6 +43,7 @@ TrailCam/
 │   ├── raw/                 # ENA24 download (gitignored)
 │   ├── interim/             # Cropped animals (gitignored)
 │   └── processed/           # Train/val/test splits (gitignored)
+├── demo/                    # CNN live/video demo
 ├── docs/
 │   ├── deliverables/        # Proposal and course writeups
 │   └── related-work/        # Literature notes
